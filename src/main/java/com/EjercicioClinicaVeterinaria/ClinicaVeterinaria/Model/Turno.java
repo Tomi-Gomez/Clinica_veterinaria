@@ -1,15 +1,19 @@
 package com.EjercicioClinicaVeterinaria.ClinicaVeterinaria.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Turno {
+    @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE)
     private Long id_turno;
     private String especialidad;
     private String fecha;

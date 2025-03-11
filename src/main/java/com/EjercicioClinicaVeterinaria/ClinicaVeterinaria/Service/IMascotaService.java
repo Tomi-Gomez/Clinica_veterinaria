@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+
 public interface IMascotaService {
 
     public List<Mascota> getListaMascotas();

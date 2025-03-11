@@ -1,31 +1,35 @@
 package com.EjercicioClinicaVeterinaria.ClinicaVeterinaria.Service;
 
 import com.EjercicioClinicaVeterinaria.ClinicaVeterinaria.Model.Turno;
+import com.EjercicioClinicaVeterinaria.ClinicaVeterinaria.Repositroy.ITurnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
+@Service
 public class TurnoService implements ITurnoService{
     @Autowired
-    ITurnoService turnoRepo;
+    ITurnoRepository turnoRepo;
 
     @Override
     public List<Turno> getListTurnos() {
-        return turnoRepo.getListTurnos();
+        return turnoRepo.findAll();
     }
 
     @Override
     public List<Turno> getListTurnoFecha(String fecha) {
-        return turnoRepo.getListTurnoFecha(fecha);
+        return turnoRepo.findAllByFecha(fecha);
     }
 
     @Override
-    public Turno getTurno(Long id) {
-        return turnoRepo.getTurno(id);
+    public Optional<Turno> getTurno(Long id) {
+        return turnoRepo.findById(id);
     }
 
     @Override
     public void saveTurno(Turno turno) {
-        turnoRepo.saveTurno(turno);
+        turnoRepo.save(turno);
     }
 }

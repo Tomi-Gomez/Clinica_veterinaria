@@ -4,9 +4,11 @@ import com.EjercicioClinicaVeterinaria.ClinicaVeterinaria.Model.Turno;
 import com.EjercicioClinicaVeterinaria.ClinicaVeterinaria.Service.ITurnoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class TurnoController {
@@ -19,4 +21,25 @@ public class TurnoController {
         return "El turno fue guardado correctamente";
     }
 
+    @GetMapping ("/tuno/listTurnos")
+    public List<Turno> getListTurnos(){
+        return turnoService.getListTurnos();
+    }
+
+    @GetMapping ("/turno/listTurnoporFecha/{fecha}")
+    public List<Turno> getTurnoFecha(@PathVariable String fecha){
+        List<Turno> listTurnos = turnoService.getListTurnos();
+        List<Turno> listTurnFecha = new ArrayList<>();
+        for (Turno l:listTurnos){
+            if (l.getFecha().equalsIgnoreCase(fecha)){
+                listTurnFecha.add(l);
+            }
+        }
+        return listTurnFecha;
+    }
+
+    @GetMapping ("/turno/listTurno/{id}")
+    public Optional<Turno> getTurnoId(@PathVariable Long id){
+        return turnoService.getTurno(id);
+    }
 }
