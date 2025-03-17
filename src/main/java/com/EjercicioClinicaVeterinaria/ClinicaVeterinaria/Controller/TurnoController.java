@@ -1,5 +1,6 @@
 package com.EjercicioClinicaVeterinaria.ClinicaVeterinaria.Controller;
 
+import com.EjercicioClinicaVeterinaria.ClinicaVeterinaria.Dto.TurnoDTO;
 import com.EjercicioClinicaVeterinaria.ClinicaVeterinaria.Model.Turno;
 import com.EjercicioClinicaVeterinaria.ClinicaVeterinaria.Service.ITurnoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class TurnoController {
         return "El turno fue guardado correctamente";
     }
 
-    @GetMapping ("/tuno/listTurnos")
+    @GetMapping ("/turno/listTurnos")
     public List<Turno> getListTurnos(){
         return turnoService.getListTurnos();
     }
@@ -41,5 +42,10 @@ public class TurnoController {
     @GetMapping ("/turno/listTurno/{id}")
     public Optional<Turno> getTurnoId(@PathVariable Long id){
         return turnoService.getTurno(id);
+    }
+
+    @GetMapping("/turno/{id_turno}")
+    public Optional<TurnoDTO> getListTurno(@PathVariable Long id_turno){
+        return Optional.ofNullable(turnoService.getListTurnoDTO(id_turno));
     }
 }

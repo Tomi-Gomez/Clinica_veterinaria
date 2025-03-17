@@ -1,5 +1,6 @@
 package com.EjercicioClinicaVeterinaria.ClinicaVeterinaria.Service;
 
+import com.EjercicioClinicaVeterinaria.ClinicaVeterinaria.Dto.TurnoDTO;
 import com.EjercicioClinicaVeterinaria.ClinicaVeterinaria.Model.Turno;
 
 import java.util.List;
@@ -12,4 +13,6 @@ public interface ITurnoService {
     public Optional<Turno> getTurno(Long id);
 
     public void saveTurno(Turno turno);
+
+    public TurnoDTO getListTurnoDTO(Long id_turno);
 }

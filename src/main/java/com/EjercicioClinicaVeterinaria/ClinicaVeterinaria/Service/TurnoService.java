@@ -1,5 +1,6 @@
 package com.EjercicioClinicaVeterinaria.ClinicaVeterinaria.Service;
 
+import com.EjercicioClinicaVeterinaria.ClinicaVeterinaria.Dto.TurnoDTO;
 import com.EjercicioClinicaVeterinaria.ClinicaVeterinaria.Model.Turno;
 import com.EjercicioClinicaVeterinaria.ClinicaVeterinaria.Repositroy.ITurnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,21 @@ public class TurnoService implements ITurnoService{
     @Override
     public void saveTurno(Turno turno) {
         turnoRepo.save(turno);
+    }
+
+    @Override
+    public TurnoDTO getListTurnoDTO(Long id_turno) {
+        TurnoDTO turnoDTO = new TurnoDTO();
+        Optional<Turno> turno = this.getTurno(id_turno);
+
+        turnoDTO.setEspecialidad(turno.get().getEspecialidad());
+        turnoDTO.setFecha(turno.get().getFecha());
+        turnoDTO.setEspecieMascota(turno.get().getMascota().getEspecie());
+        turnoDTO.setNombreMascota(turno.get().getMascota().getNombre());
+        turnoDTO.setNombreDuenio(turno.get().getDuenio().getNombre());
+        turnoDTO.setNumeroDuenio(turno.get().getDuenio().getCelular());
+
+        return turnoDTO;
+
     }
 }
